@@ -21,7 +21,7 @@ const encodeExBUrl = async (registryId) => {
       x = parseInt(obj.features[0].geometry.x.toFixed(1));
       y = parseInt(obj.features[0].geometry.y.toFixed(1));
     
-      const center = `${x},${y},${wkid}`;
+      const center = `${x}%2C${y}%2C${wkid}`;
       const viewpointDetails = `center:${center},scale:${scale},rotation:0,viewpoint:`;
 
       const dataStr = `#data_s=id%3A${dataLayer}%3A${objectId}&widget_334=active_datasource_id:dataSource_14,`;
@@ -75,7 +75,7 @@ const getViewPointSyntax = (x, y, wkid, scale) => {
     }
   });
 
-  return viewpointUrlSyntax
+  return viewpointUrlSyntax.replace(/\"/g,"");
 }
 
 const urlOutput = encodeExBUrl(
